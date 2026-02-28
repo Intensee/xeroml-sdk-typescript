@@ -9,14 +9,15 @@
     "build": "tsc",
     "lint": "echo 'no lint configured yet'",
     "typecheck": "tsc --noEmit",
-    "test": "echo 'no tests yet'"
+    "test": "vitest run"
   },
   "engines": {
     "node": ">=18.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
-    "typescript": "^5.4.0"
+    "typescript": "^5.4.0",
+    "vitest": "^3.0.0"
   },
   "license": "MIT",
   "repository": {
