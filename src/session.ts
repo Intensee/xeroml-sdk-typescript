@@ -6,6 +6,7 @@ import type {
   IntentGraph,
   ParseOptions,
   SessionGraphResponse,
+  SessionHistoryResponse,
   SessionParseResponse,
   UpdateOptions,
 } from "./types.js";
@@ -70,6 +71,17 @@ export class Session {
       null,
     );
     return res.graph;
+  }
+
+  /**
+   * Get per-turn intent graphs, drift events, and the current evolved graph. Free.
+   */
+  async getHistory(): Promise<SessionHistoryResponse> {
+    return this.client.request<SessionHistoryResponse>(
+      "GET",
+      `/v1/sessions/${this.sessionId}/history`,
+      null,
+    );
   }
 
   /**

@@ -90,6 +90,36 @@ export interface SessionGraphResponse {
   turn_count: number;
 }
 
+export interface GraphTurn {
+  turn_number: number;
+  graph: IntentGraph;
+  root_goal: string;
+  confidence: number;
+  sub_goal_count: number;
+  provider: string;
+  latency_ms: number;
+  created_at: string;
+}
+
+export interface DriftEvent {
+  turn_number: number;
+  drift_type: string;
+  severity: number;
+  description: string;
+  previous_goal: string | null;
+  current_goal: string | null;
+  created_at: string;
+}
+
+export interface SessionHistoryResponse {
+  session_id: string;
+  status: string;
+  turn_count: number;
+  current_graph: IntentGraph | null;
+  graphs: GraphTurn[];
+  drift_events: DriftEvent[];
+}
+
 export interface UsageMonth {
   month: string;
   parse_calls: number;
