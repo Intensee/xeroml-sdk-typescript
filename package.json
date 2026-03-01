@@ -1,6 +1,6 @@
 {
   "name": "@xeroml/sdk",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "XeroML TypeScript SDK — intent parsing and drift detection for AI apps",
   "type": "module",
   "main": "dist/index.js",
