@@ -1,6 +1,6 @@
 // @xeroml/sdk — Session class for multi-turn conversations
 
-import type { XeroML } from "./client";
+import type { XeroML } from "./client.js";
 import type {
   DriftReport,
   IntentGraph,
@@ -8,7 +8,7 @@ import type {
   SessionGraphResponse,
   SessionParseResponse,
   UpdateOptions,
-} from "./types";
+} from "./types.js";
 
 export class Session {
   private client: XeroML;

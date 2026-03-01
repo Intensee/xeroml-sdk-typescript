@@ -1,7 +1,7 @@
 // @xeroml/sdk — entry point
 
-export { XeroML } from "./client";
-export { Session } from "./session";
+export { XeroML } from "./client.js";
+export { Session } from "./session.js";
 
 // Types
 export type {
@@ -20,7 +20,7 @@ export type {
   XeroMLConfig,
   ParseOptions,
   UpdateOptions,
-} from "./types";
+} from "./types.js";
 
 // Errors
 export {
@@ -35,5 +35,5 @@ export {
   XeroMLTimeoutError,
   XeroMLServerError,
   mapError,
-} from "./errors";
-export type { ErrorBody } from "./errors";
+} from "./errors.js";
+export type { ErrorBody } from "./errors.js";

@@ -1,7 +1,7 @@
 // @xeroml/sdk — XeroML client class
 
-import { mapError } from "./errors";
-import { Session } from "./session";
+import { mapError } from "./errors.js";
+import { Session } from "./session.js";
 import type {
   IntentGraph,
   ParseOptions,
@@ -11,7 +11,7 @@ import type {
   SessionListItem,
   UsageInfo,
   XeroMLConfig,
-} from "./types";
+} from "./types.js";
 
 const DEFAULT_BASE_URL = "https://api.xeroml.com";
 const DEFAULT_TIMEOUT = 30_000;
