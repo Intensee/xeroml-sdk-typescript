@@ -30,11 +30,15 @@ async function main() {
 
   console.log("Running TypeScript SDK E2E tests...\n");
 
-  await test("parse()", async () => {
+  await test("parse() returns v3 graph", async () => {
     const graph = await client.parse("Help me plan a trip to Tokyo");
-    assert(graph.root_goal, "root_goal should be non-empty");
-    assert(graph.sub_goals.length > 0, "sub_goals should have at least one item");
-    assert(graph.meta.confidence > 0, "confidence should be greater than 0");
+    assert(graph.v === "0.3.0", "v should be 0.3.0");
+    assert(graph.objective, "objective should be non-empty");
+    assert(graph.directive, "directive should be non-empty");
+    assert(graph.type, "type should be set");
+    assert(graph.confidence > 0, "confidence should be greater than 0");
+    assert(graph.phase, "phase should be set");
+    assert(graph.history.length > 0, "history should have at least one entry");
   });
 
   await test("session workflow: createSession -> parse -> getGraph -> end", async () => {
@@ -42,12 +46,13 @@ async function main() {
     assert(session.sessionId, "sessionId should be non-empty");
 
     const graph = await session.parse("Build a REST API");
-    assert(graph.root_goal, "session parse should return a root_goal");
-    assert(graph.sub_goals.length > 0, "session parse should return sub_goals");
+    assert(graph.objective, "session parse should return an objective");
+    assert(graph.directive, "session parse should return a directive");
+    assert(graph.v === "0.3.0", "v should be 0.3.0");
 
     const graph2 = await session.getGraph();
     assert(graph2, "getGraph should return a graph");
-    assert(graph2.root_goal, "getGraph should return a root_goal");
+    assert(graph2.objective, "getGraph should return an objective");
 
     await session.end();
   });

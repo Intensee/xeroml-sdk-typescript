@@ -13,21 +13,21 @@ import type { IntentGraph, UsageInfo, SessionListItem } from "../src/types";
 // ── Fixtures ──────────────────────────────────────────
 
 const MOCK_GRAPH: IntentGraph = {
-  schema_version: "1.0",
-  root_goal: "book a flight",
-  sub_goals: [],
-  meta: {
-    source: "openai",
-    confidence: 0.95,
-    negotiation_history: [],
-    latent_states: {
-      goal_intent: "book_flight",
-      action_readiness: "deciding",
-      ambiguity_level: "clear",
-      risk_sensitivity: "low",
-      intent_scope: "single",
-    },
-  },
+  v: "0.3.0",
+  directive: "Book a flight to Tokyo",
+  objective: "book a flight",
+  type: "action",
+  confidence: 0.79,
+  phase: "clarifying",
+  urgency: "normal",
+  context: { motivation: "travel planning", background: null },
+  constraints: [],
+  rejected: [],
+  implicit: ["reasonable price", "direct flight preferred"],
+  success_criteria: [{ text: "Flight booked successfully", source: "assumed", turn: 1 }],
+  unknowns: [{ question: "What are the travel dates?", impact: "high" }],
+  goals: [],
+  history: [{ turn: 1, type: "created", detail: "User wants to book a flight" }],
 };
 
 const MOCK_USAGE: UsageInfo = {

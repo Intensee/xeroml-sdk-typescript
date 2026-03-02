@@ -5,21 +5,21 @@ import type { IntentGraph } from "../src/types";
 // ── Fixtures ──────────────────────────────────────────
 
 const MOCK_GRAPH: IntentGraph = {
-  schema_version: "1.0",
-  root_goal: "order pizza",
-  sub_goals: [],
-  meta: {
-    source: "openai",
-    confidence: 0.9,
-    negotiation_history: [],
-    latent_states: {
-      goal_intent: "order_pizza",
-      action_readiness: "executing",
-      ambiguity_level: "clear",
-      risk_sensitivity: "low",
-      intent_scope: "single",
-    },
-  },
+  v: "0.3.0",
+  directive: "Order a pepperoni pizza",
+  objective: "order pizza",
+  type: "action",
+  confidence: 0.89,
+  phase: "executing",
+  urgency: "normal",
+  context: { motivation: "hungry", background: null },
+  constraints: [],
+  rejected: [],
+  implicit: ["delivery to current address"],
+  success_criteria: [{ text: "Pizza ordered and confirmed", source: "assumed", turn: 1 }],
+  unknowns: [],
+  goals: [],
+  history: [{ turn: 1, type: "created", detail: "User wants to order pizza" }],
 };
 
 // ── Helpers ───────────────────────────────────────────

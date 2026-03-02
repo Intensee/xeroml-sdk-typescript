@@ -1,41 +1,62 @@
-// @xeroml/sdk — TypeScript types matching API Pydantic models exactly
+// @xeroml/sdk — TypeScript types matching API Pydantic models (v3 / 0.3.0)
 
-// ── IntentGraph types ──────────────────────────────────
+// ── IntentGraph v3 types ───────────────────────────────
 
-export interface LatentStates {
-  goal_intent: string;
-  action_readiness: "exploring" | "deciding" | "executing";
-  ambiguity_level: "clear" | "partial" | "conflicting";
-  risk_sensitivity: "low" | "medium" | "high";
-  intent_scope: "single" | "compound" | "multi_step";
+export interface Constraint {
+  text: string;
+  source: "stated" | "assumed";
+  turn: number;
 }
 
-export interface IntentMeta {
-  source: string;
-  confidence: number;
-  negotiation_history: string[];
-  latent_states: LatentStates;
+export interface SuccessCriterion {
+  text: string;
+  source: "stated" | "assumed";
+  turn: number;
 }
 
-export interface SubGoal {
+export interface Unknown {
+  question: string;
+  impact: "high" | "medium" | "low";
+}
+
+export interface Goal {
   id: string;
-  goal: string;
-  status: "pending" | "active" | "done" | "blocked" | "abandoned" | "background";
-  priority: number;
-  success_criteria: string[];
-  constraints: string[];
-  uncertainty: number;
-  context_requirements: string[];
-  modality: string;
-  dependencies: string[];
-  children: SubGoal[];
+  objective: string;
+  status: "pending" | "active" | "done" | "blocked" | "abandoned";
+  depends_on: string[];
+  constraints: Constraint[];
+  success_criteria: SuccessCriterion[];
+  unknowns: Unknown[];
+  outcome: string | null;
+}
+
+export interface HistoryEntry {
+  turn: number;
+  type: "created" | "refinement" | "correction" | "pivot" | "goal_added" | "goal_done";
+  detail: string;
+}
+
+export interface IntentContext {
+  motivation: string | null;
+  background: string | null;
 }
 
 export interface IntentGraph {
-  schema_version: string;
-  root_goal: string;
-  sub_goals: SubGoal[];
-  meta: IntentMeta;
+  v: string;
+  directive: string;
+  objective: string;
+  type: "build" | "fix" | "explain" | "explore" | "decide" | "action";
+  confidence: number;
+  phase: "clarifying" | "planning" | "executing" | "done";
+  urgency: "low" | "normal" | "high" | "critical";
+  context: IntentContext;
+  constraints: Constraint[];
+  rejected: string[];
+  implicit: string[];
+  success_criteria: SuccessCriterion[];
+  unknowns: Unknown[];
+  goals: Goal[];
+  history: HistoryEntry[];
 }
 
 // ── Drift ──────────────────────────────────────────────

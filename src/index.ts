@@ -6,9 +6,12 @@ export { Session } from "./session.js";
 // Types
 export type {
   IntentGraph,
-  SubGoal,
-  IntentMeta,
-  LatentStates,
+  Constraint,
+  SuccessCriterion,
+  Unknown,
+  Goal,
+  HistoryEntry,
+  IntentContext,
   DriftReport,
   DriftEvent,
   ParseResponse,
