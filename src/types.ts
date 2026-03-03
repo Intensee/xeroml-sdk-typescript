@@ -1,4 +1,4 @@
-// @xeroml/sdk — TypeScript types matching API Pydantic models (v3 / 0.3.0)
+// @xeroml/sdk — TypeScript types matching API Pydantic models (v4 / 0.4.0)
 
 // ── IntentGraph v3 types ───────────────────────────────
 
@@ -44,6 +44,7 @@ export interface IntentContext {
 export interface IntentGraph {
   v: string;
   directive: string;
+  directive_source: "computed" | "llm";
   objective: string;
   type: "build" | "fix" | "explain" | "explore" | "decide" | "action";
   confidence: number;
@@ -66,8 +67,9 @@ export interface DriftReport {
   drift_type: string | null;
   severity: number;
   description: string;
-  previous_goal: string | null;
-  current_goal: string | null;
+  initial_objective: string | null;
+  previous_objective: string | null;
+  current_objective: string | null;
 }
 
 // ── API response types ─────────────────────────────────
@@ -127,8 +129,9 @@ export interface DriftEvent {
   drift_type: string;
   severity: number;
   description: string;
-  previous_goal: string | null;
-  current_goal: string | null;
+  initial_objective: string | null;
+  previous_objective: string | null;
+  current_objective: string | null;
   created_at: string;
 }
 
